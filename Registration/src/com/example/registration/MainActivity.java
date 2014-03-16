@@ -20,7 +20,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -36,8 +38,12 @@ public class MainActivity extends Activity {
 	private static String url_confirm_login = "http://128.238.241.14/peekbite/confirm_login.php";
 
 	// end of code by Maulik
-	EditText usernameEditText = null;
-	EditText pwdEditText = null;
+	
+	
+	private EditText emailEditText = null;
+	private EditText pwdEditText = null;
+	private TextView signUpLink;
+	private Button logInButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,16 +51,42 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		setTitle("Log in");
 
-		usernameEditText = (EditText) findViewById(R.id.et_password);
-		pwdEditText = (EditText) findViewById(R.id.et_username);
+		emailEditText = (EditText) findViewById(R.id.et_email);
+		pwdEditText = (EditText) findViewById(R.id.et_password);
+		
+		signUpLink = (TextView)findViewById(R.id.SignUpLink);
+		logInButton = (Button)findViewById(R.id.logInButton);
+		
+		
+		signUpLink.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
+				startActivity(intent);								
+			}
+		});
+		
+		
+		logInButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {				
+				login();
+			}
+		});
+				
 	}
+	
+	
+	
 
-	public void login(View view) {
-		String username = usernameEditText.getText().toString().trim();
+	public void login() {
+		String Email = emailEditText.getText().toString().trim();
 		String password = pwdEditText.getText().toString().trim();
 
-		if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-			Toast.makeText(this, "Username or password can't be null.",
+		if (TextUtils.isEmpty(Email) || TextUtils.isEmpty(password)) {
+			Toast.makeText(this, "Email or password can't be null.",
 					Toast.LENGTH_LONG).show();
 		} else {
 			/**
@@ -63,18 +95,13 @@ public class MainActivity extends Activity {
 			// Start of code by Maulik
 
 			// Check login details in Background Thread
-			new ConfirmLogin().execute(username, password);
+			new ConfirmLogin().execute(Email, password);
 
 			// End of code by Maulik
 		}
 	}
 
-	public void signup(View view) {
 
-		Intent intent = new Intent();
-		intent.setClass(this, RegistrationActivity.class);
-		startActivity(intent);
-	}
 
 	// Start Code change by Maulik
 	/**
@@ -105,7 +132,7 @@ public class MainActivity extends Activity {
 
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			params.add(new BasicNameValuePair("uname", args[0]));
+			params.add(new BasicNameValuePair("email", args[0]));
 			params.add(new BasicNameValuePair("password", args[1]));
 
 			// getting JSON string from URL
@@ -135,7 +162,7 @@ public class MainActivity extends Activity {
 									.setIcon(android.R.drawable.ic_dialog_alert)
 									.setTitle("Error")
 									.setMessage(
-											"Incorrect Username or Password.")
+											"Incorrect Email or Password.")
 									.setPositiveButton("OK", null).show();
 						}
 					});

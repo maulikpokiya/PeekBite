@@ -1,38 +1,67 @@
-	<LinearLayout
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:tools="http://schemas.android.com/tools"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent" android:orientation="vertical"
-		tools:context=".MainActivity">
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" android:orientation="vertical"
+	tools:context=".MainActivity"
+	android:background="@color/Blue" >
 
-		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/nameInput" />
-		<EditText android:id="@+id/et_username"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:inputType="text" />
+	<ImageView
+	    android:id="@+id/imageView1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:src="@drawable/logo_shot" 
+	    android:contentDescription="@string/pkLogoDescription" />
 
-		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/passInput" />
+	
+	<EditText android:id="@+id/et_email"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
+		android:layout_marginLeft="50dp"
+		android:layout_marginRight="50dp"
+		android:padding="10dp"
+   		android:background="@drawable/rounded_edittext"  			
+		android:inputType="text"
+		android:textSize="12sp"
+		android:hint="Email" />
 
-		<EditText android:id="@+id/et_password"
-			android:inputType="textPassword" android:layout_width="fill_parent"
-			android:layout_height="wrap_content" />
 
-		<RelativeLayout android:layout_width="fill_parent"
-			android:layout_height="wrap_content">
-			
-			<Button android:layout_alignParentLeft="true"
-				android:onClick="signup" 
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="Signup" />
 
-			<Button android:layout_alignParentRight="true"
-				android:onClick="login" 
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/loginText" />
-		</RelativeLayout>
-	</LinearLayout>
+	<EditText android:id="@+id/et_password"
+		android:inputType="textPassword" 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
+		android:layout_marginLeft="50dp"
+		android:layout_marginRight="50dp"
+		android:padding="10dp"
+   		android:background="@drawable/rounded_edittext"
+   		android:textSize="12sp"
+   		android:hint="Password"  />
+	
+	<TextView 
+	    android:id="@+id/SignUpLink"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"	    
+	    android:gravity="center"
+	    android:textColor="@color/White"
+	    android:textSize="12sp"
+	    android:text="@string/SignUpLinkText"/>
+	
+	<Button
+	    android:id="@+id/logInButton"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="50dp"
+		android:layout_marginLeft="200dp"
+		android:background="@drawable/rounded_button_yellow"
+		android:textSize="12sp"
+		android:textColor="@color/Blue"
+		android:text="@string/loginText"  />
+
+
+</LinearLayout>
