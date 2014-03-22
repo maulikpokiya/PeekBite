@@ -38,7 +38,7 @@ public class RegistrationActivity extends Activity {
 	JSONParser jsonParser = new JSONParser();
 
 	// url to create new user
-	private static String signup_user_url = "http://128.238.241.14/peekbite/signup_user.php";
+	private static String signup_user_url = "http://peekbite.pinaksaha.me/signup_user.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -161,7 +161,7 @@ public class RegistrationActivity extends Activity {
 			params.add(new BasicNameValuePair("firstname", args[0]));
 			params.add(new BasicNameValuePair("lastname", args[1]));
 			params.add(new BasicNameValuePair("password", args[2]));
-			params.add(new BasicNameValuePair("email", args[3]));
+			params.add(new BasicNameValuePair("uname", args[3]));
 
 			// getting JSON Object
 			JSONObject json = jsonParser.makeHttpRequest(signup_user_url,

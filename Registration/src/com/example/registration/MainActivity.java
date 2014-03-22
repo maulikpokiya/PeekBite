@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
 	private static final String TAG_SUCCESS = "success";
 
 	// url to get all products list
-	private static String url_confirm_login = "http://128.238.241.14/peekbite/confirm_login.php";
+	private static String url_confirm_login = "http://peekbite.pinaksaha.me/confirm_login.php";
 
 	// end of code by Maulik
 	
@@ -132,7 +132,7 @@ public class MainActivity extends Activity {
 
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			params.add(new BasicNameValuePair("email", args[0]));
+			params.add(new BasicNameValuePair("uname", args[0]));
 			params.add(new BasicNameValuePair("password", args[1]));
 
 			// getting JSON string from URL
