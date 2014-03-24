@@ -18,24 +18,27 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class RegistrationActivity extends Activity {
 
-	EditText usernameEditText = null;
-	EditText emailEditText = null;
-	EditText pwdEditText = null;
-	EditText pwsEditTextConfirm = null;
-	CheckBox acceptCheckBox = null;
+	private EditText userFirstName = null;
+	private EditText userLastName = null;
+	private EditText emailEditText = null;
+	private EditText pwdEditText = null;
+	private EditText pwsEditTextConfirm = null;
+	private CheckBox acceptCheckBox = null;
+	private Button signUpSaveButton;
 
 	// Added for Database task by Maulik
 
 	JSONParser jsonParser = new JSONParser();
 
 	// url to create new user
-	private static String signup_user_url = "http://128.238.241.14/peekbite/signup_user.php";
+	private static String signup_user_url = "http://peekbite.pinaksaha.me/signup_user.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -49,21 +52,38 @@ public class RegistrationActivity extends Activity {
 		setContentView(R.layout.activity_registration);
 		setTitle("Registration");
 
-		usernameEditText = (EditText) findViewById(R.id.singupUsername);
-		pwdEditText = (EditText) findViewById(R.id.singupPwd);
-		pwsEditTextConfirm = (EditText) findViewById(R.id.singupPwd2);
-		acceptCheckBox = (CheckBox) findViewById(R.id.check);
-		emailEditText = (EditText) findViewById(R.id.signupEmail);
+		userFirstName = (EditText)findViewById(R.id.signupUserFirstName);
+		userLastName = (EditText)findViewById(R.id.signupUserLastName);
+		pwdEditText = (EditText)findViewById(R.id.singupPwd);
+		pwsEditTextConfirm = (EditText)findViewById(R.id.singupPwd2);
+		acceptCheckBox = (CheckBox)findViewById(R.id.check);
+		emailEditText = (EditText)findViewById(R.id.signupEmail);
+		signUpSaveButton = (Button)findViewById(R.id.registrationButton);
+		
+		signUpSaveButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				signup();
+				
+			}
+		});
+				
 	}
+	
+	
+	
 
-	public void signup(View view) {
+	public void signup() {
 
-		String username = usernameEditText.getText().toString().trim();
+		String email = emailEditText.getText().toString().trim();
+		String firstName = userFirstName.getText().toString().trim();
+		String lastName = userLastName.getText().toString().trim();
 		String password = pwdEditText.getText().toString().trim();
 		String passwordConfirm = pwsEditTextConfirm.getText().toString().trim();
-		String email = emailEditText.getText().toString().trim();
 
-		if (TextUtils.isEmpty(email) || TextUtils.isEmpty(username)
+		if (TextUtils.isEmpty(email) || TextUtils.isEmpty(firstName)
+				|| TextUtils.isEmpty(lastName)
 				|| TextUtils.isEmpty(password)
 				|| TextUtils.isEmpty(passwordConfirm)) {
 			Toast.makeText(this,
@@ -83,14 +103,15 @@ public class RegistrationActivity extends Activity {
 
 			if (acceptCheckBox.isChecked()) {
 
-				intent.putExtra("username", username);
+				intent.putExtra("firstname", firstName);
+				intent.putExtra("lastname", lastName);
 				intent.putExtra("password", password);
 				intent.putExtra("email", email);
 
 				// Begin changes for Database task by Maulik
 
 				// creating new user in background thread
-				new CreateNewUser().execute(username, password, email);
+				new CreateNewUser().execute(firstName, lastName, password, email);
 
 				// End of changes by Maulik
 
@@ -137,9 +158,10 @@ public class RegistrationActivity extends Activity {
 
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			params.add(new BasicNameValuePair("uname", args[0]));
-			params.add(new BasicNameValuePair("password", args[1]));
-			params.add(new BasicNameValuePair("email", args[2]));
+			params.add(new BasicNameValuePair("firstname", args[0]));
+			params.add(new BasicNameValuePair("lastname", args[1]));
+			params.add(new BasicNameValuePair("password", args[2]));
+			params.add(new BasicNameValuePair("uname", args[3]));
 
 			// getting JSON Object
 			JSONObject json = jsonParser.makeHttpRequest(signup_user_url,

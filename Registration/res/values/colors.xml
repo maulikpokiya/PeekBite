@@ -23,4 +23,8 @@
   <color name="viewfinder_frame">#ff000000</color>
   <color name="viewfinder_laser">#ffff0000</color>
   <color name="viewfinder_mask">#60000000</color>
+  
+  <color name="Blue">#00B4DF</color>
+  <color name="Yellow">#FFF100</color>
+  <color name="White">#FFFFFF</color>
 </resources>
