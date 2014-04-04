@@ -49,11 +49,11 @@ public class PaymentType extends Activity implements OnClickListener{
 		cwcEditText = (EditText) findViewById(R.id.cwcedttxt);
 		zipEditText = (EditText) findViewById(R.id.zipedttxt);
 		
-		if (type.equals("PEEK")) {
+		/*if (type.equals("PEEK")) {
 			peekbiteLayout.setVisibility(View.VISIBLE);
 			callwaiterLayout.setVisibility(View.GONE);
-			creditcardLayout.setVisibility(View.GONE);
-		} else if (type.equals("CALL")) {
+			creditcardLayout.setVisibility(View.GONE); 
+		 else if (type.equals("CALL")) {
 			peekbiteLayout.setVisibility(View.GONE);
 			callwaiterLayout.setVisibility(View.VISIBLE);
 			creditcardLayout.setVisibility(View.GONE);
@@ -61,7 +61,7 @@ public class PaymentType extends Activity implements OnClickListener{
 			peekbiteLayout.setVisibility(View.GONE);
 			callwaiterLayout.setVisibility(View.GONE);
 			creditcardLayout.setVisibility(View.VISIBLE);
-		}
+		}**/
 
 		backButton = (ImageView) findViewById(R.id.backBtn);
 		payButton = (Button) findViewById(R.id.paybtn);
