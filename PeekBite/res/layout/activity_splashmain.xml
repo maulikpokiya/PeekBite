@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#636474"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/categoryButton_MainActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:background="@drawable/manuselector" />
+
+        <TextView
+            android:id="@+id/orderTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="bottom|center"
+            android:singleLine="true"
+            android:text="Ready to Order"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/rateButton_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/cartselector"
+            android:gravity="bottom|center" />
+		<!-- item number displayed over the shopping cart -->
+<!--         <TextView
+		    android:id="@+id/shoppingcart_number"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="5dp"
+		    android:layout_alignTop="@+id/rateButton_main"
+		    android:layout_alignRight="@+id/rateButton_main"
+		    android:layout_alignBottom="@+id/rateButton_main"
+		    android:layout_margin="1dp"
+		    android:gravity="center"
+		    android:text="0"
+		    android:textColor="#000000" /> -->
+        
+       
+
+        <TextView
+            android:id="@+id/numberof_itemsTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="bottom|center"
+            android:singleLine="true"
+            android:text="0 Items"
+            android:textColor="#b2dd5d"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1" >
+    </ListView>
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/categories_bottom_menu" />
+
+</LinearLayout>
