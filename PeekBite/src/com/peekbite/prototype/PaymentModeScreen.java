@@ -1,5 +1,6 @@
 package com.peekbite.prototype;
 
+import com.application.peekbite.MainActivity;
 import com.application.peekbite.R;
 
 import android.app.Activity;
@@ -10,23 +11,27 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class PaymentModeScreen extends Activity implements OnClickListener{
 	TableRow withPeekRow, withCallWaiter, withCreditcard;
 	ImageView backButton;
 	String key = "";
-
+	TextView logout_tv;
 	LinearLayout type1Layout, type2Layout, type3Layout, type4Layout, type5Layout;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.payment_screen);
-
+		logout_tv = (TextView)findViewById(R.id.logout_tv);
 		withPeekRow = (TableRow) findViewById(R.id.paywithpeek_row);
 		withCallWaiter = (TableRow) findViewById(R.id.callwaiter_row);
 		withCreditcard = (TableRow) findViewById(R.id.paywithcredit_row);
-		
+		/**
+		 * 
+		 
 		type1Layout = (LinearLayout) findViewById(R.id.type1layout);
 		type2Layout = (LinearLayout) findViewById(R.id.type2layout);
 		type3Layout = (LinearLayout) findViewById(R.id.type3layout);
@@ -37,7 +42,7 @@ public class PaymentModeScreen extends Activity implements OnClickListener{
 		type2Layout.setOnClickListener(this);
 		type3Layout.setOnClickListener(this);
 		type4Layout.setOnClickListener(this);
-		type5Layout.setOnClickListener(this);
+		type5Layout.setOnClickListener(this);*/
 		
 		key = getIntent().getStringExtra("KEY");
 
@@ -47,9 +52,12 @@ public class PaymentModeScreen extends Activity implements OnClickListener{
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(PaymentModeScreen.this, OrderScreen.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				intent.putExtra("KEY", key);
-				startActivity(intent);
+				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				//intent.putExtra("KEY", key);
+				//startActivity(intent);
+				
+				PaymentModeScreen.this.setResult(RESULT_CANCELED,intent);
+				PaymentModeScreen.this.finish();
 			}
 		});
 		
@@ -81,6 +89,23 @@ public class PaymentModeScreen extends Activity implements OnClickListener{
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				intent.putExtra("TYPE", "CREDIT");
 				startActivity(intent);
+			}
+		});
+		/**
+		 * log out function
+		 */
+		logout_tv.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				 
+				Intent intent = new Intent(); 
+				intent.setClass(PaymentModeScreen.this, MainActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  //注意本行的FLAG设置
+				startActivity(intent);
+				finish();//关掉自己
+				Toast.makeText(PaymentModeScreen.this, "You logged out!", Toast.LENGTH_SHORT).show();
+				 
 			}
 		});
 	}

@@ -1,6 +1,8 @@
 package com.peekbite.prototype;
 
+import com.application.peekbite.MainActivity;
 import com.application.peekbite.R;
+import com.peekbite.model.TotalQuantity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,11 +12,13 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ItemDetails extends Activity implements OnClickListener {
-	TextView orderTextView, numberofItemsTextView,costTextView,nameTextView; 
+	TextView logoutTV, numberofItemsTextView,costTextView,nameTextView;
 	ImageView dishImageView;
 	int numberofItems = 0;
+	private TotalQuantity tq;
 	LinearLayout type1Layout, type2Layout, type3Layout, type4Layout, type5Layout;
 
 	@Override
@@ -23,11 +27,13 @@ public class ItemDetails extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.item_details);
 		
-		orderTextView = (TextView) findViewById(R.id.orderTxt);
+		logoutTV = (TextView) findViewById(R.id.logoutTV);
 		numberofItemsTextView = (TextView) findViewById(R.id.numberof_itemsTxt);
 		costTextView = (TextView)findViewById(R.id.dishcostTextView);
 		nameTextView = (TextView)findViewById(R.id.dishnameTextView);
 		dishImageView = (ImageView)findViewById(R.id.dishImageView);
+		/**
+		 * 
 		
 		type1Layout = (LinearLayout) findViewById(R.id.type1layout);
 		type2Layout = (LinearLayout) findViewById(R.id.type2layout);
@@ -39,25 +45,27 @@ public class ItemDetails extends Activity implements OnClickListener {
 		type2Layout.setOnClickListener(this);
 		type3Layout.setOnClickListener(this);
 		type4Layout.setOnClickListener(this);
-		type5Layout.setOnClickListener(this);
+		type5Layout.setOnClickListener(this); */
 		
 		numberofItems = getIntent().getIntExtra("ITEMS", 0);
+		tq=(TotalQuantity)getApplication();
+		numberofItemsTextView.setText(tq.getNumberofItems() + "  Items");
 		
-		numberofItemsTextView.setText(numberofItems + "  Items");
-		
-		orderTextView.setOnClickListener(new OnClickListener() {
+		/**
+		 * LOG OUT FUNCTION
+		 */
+		logoutTV.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				if (numberofItems > 0) {
-					Intent intent = new Intent(ItemDetails.this, OrderScreen.class);
-					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					intent.putExtra("KEY", "ItemDetails");
-					intent.putExtra("ITEMS", numberofItems);
-					startActivity(intent);
-				} else {
-					DialogClass.createSessionAlertDialog(ItemDetails.this, "Please select items to Order.", false);
-				}
+				 
+				Intent intent = new Intent(); 
+				intent.setClass(ItemDetails.this, MainActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  //注意本行的FLAG设置
+				startActivity(intent);
+				finish();//关掉自己
+				Toast.makeText(ItemDetails.this, "You logged out!", Toast.LENGTH_SHORT).show();
+				 
 			}
 		});
 		

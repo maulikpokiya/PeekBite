@@ -5,6 +5,7 @@ import com.application.peekbite.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -20,13 +21,16 @@ public class PaymentType extends Activity implements OnClickListener{
 	ImageView backButton;
 	String fname, cardnum, cwc, zip = "";
 	LinearLayout type1Layout, type2Layout, type3Layout, type4Layout, type5Layout;
+	private CountDownTimer time;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.payment_type);
-		
+		/**
+		 * 
+		 
 		type1Layout = (LinearLayout) findViewById(R.id.type1layout);
 		type2Layout = (LinearLayout) findViewById(R.id.type2layout);
 		type3Layout = (LinearLayout) findViewById(R.id.type3layout);
@@ -37,7 +41,7 @@ public class PaymentType extends Activity implements OnClickListener{
 		type2Layout.setOnClickListener(this);
 		type3Layout.setOnClickListener(this);
 		type4Layout.setOnClickListener(this);
-		type5Layout.setOnClickListener(this);
+		type5Layout.setOnClickListener(this);*/
 		
 		key = getIntent().getStringExtra("KEY");
 		type = getIntent().getStringExtra("TYPE");
