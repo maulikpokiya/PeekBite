@@ -39,5 +39,8 @@
 	<string name="profile_username_title">User Name: </string>
 	<string name="profile_username">Robin@gmail.com</string>
 	<string name="profile_button">Change Password</string>
+	
+	<string name="history_dishname_title">Dish</string>
+	<string name="history_dishprice_title">Price</string>
 
 </resources>

@@ -51,11 +51,18 @@ public class MyOrderHistoryActivity extends Activity{
 		ArrayList<String> dishNameArr = new ArrayList<String>();
 		ArrayList<Integer> dishPriceArr = new ArrayList<Integer>();
 		
-		for(int i=0; i<orderIds.length; i++) {
-			dishImageArr.add(dishImages[i]);
-			dishNameArr.add(dishNames[i]);
-			dishPriceArr.add(dishPrices[i]);
+		//for(int i=0; i<orderIds.length; i++) {
+		if(dishNameArr.size() == 0) {
+			dishImageArr.add(dishImages[0]);
+			dishNameArr.add(dishNames[0]);
+			dishPriceArr.add(dishPrices[0]);
+			//add for test
+			dishImageArr.add(dishImages[5]);
+			dishNameArr.add(dishNames[5]);
+			dishPriceArr.add(dishPrices[5]);
+			//add Ends
 		}
+		//}
 		//fake data ends
 		
 		
@@ -63,7 +70,9 @@ public class MyOrderHistoryActivity extends Activity{
 		//List<OrderHistoryItem> orderItemArray = new ArrayList<OrderHistoryItem>();
 		orderItemArray = new ArrayList<OrderHistoryItem>();
 		
-		for(int i=0; i< dishNames.length; i++) {
+		for(int i=0; i< orderIds.length; i++) {
+			Log.i(TAG, "TEST order ID is: "+orderIds[i]);//test
+			
 			OrderHistoryItem item = new OrderHistoryItem(orderIds[i], 
 					restNames[i], restIds[i], dates[i], dishImageArr,
 					dishNameArr, dishPriceArr);
@@ -84,7 +93,7 @@ public class MyOrderHistoryActivity extends Activity{
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Log.i(TAG, "in onItemClick");//test
 		OrderHistoryItem item = orderItemArray.get(position);
-		Toast.makeText(this, "test onItemclick in MyOrderHistoryActivity", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "test onItemclick in MyOrderHistoryActivity at position: "+item.getOrderId(), Toast.LENGTH_SHORT).show();
 	}
 	
 	

@@ -9,6 +9,7 @@
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal" >
         
         <TextView 
@@ -30,13 +31,42 @@
         android:id="@+id/history_rest_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom ="10dp"
+        android:textSize="14sp"
         android:text="@string/history_rest_name_text" />
     
-	<TableLayout 
-	    android:id="@+id/history_dishes_table"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent" >
+	<LinearLayout 
+		android:id="@+id/history_item_dishes_title_layout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="2dp"
+		android:orientation="horizontal" >
+       	
+       	<TextView 
+            android:id="@+id/history_dishname_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:textSize="14sp"
+            android:text="@string/history_dishname_title" />
+        
+        <TextView 
+            android:id="@+id/history_dishprice_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:text="@string/history_dishprice_title" />	        
+    </LinearLayout>
 	    
-	</TableLayout>
+    <LinearLayout 
+        android:id="@+id/history_item_dishes_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical" >	        
+    </LinearLayout>
 
 </LinearLayout>

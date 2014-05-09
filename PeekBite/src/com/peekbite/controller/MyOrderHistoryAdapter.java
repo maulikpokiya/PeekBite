@@ -3,12 +3,16 @@ package com.peekbite.controller;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -20,7 +24,6 @@ public class MyOrderHistoryAdapter extends ArrayAdapter<OrderHistoryItem>{
 	private final static String TAG = "MyOrderHistoryAdapter";
 	
 	private List<OrderHistoryItem> mItems;
-	//private LayoutInflater mInflater;
 	private Context mContext;
 	
 	
@@ -33,7 +36,6 @@ public class MyOrderHistoryAdapter extends ArrayAdapter<OrderHistoryItem>{
 		
 		this.mContext = context;
 		this.mItems = items;
-		//this.mInflater = LayoutInflater.from(context);
 	}
 	
     @Override
@@ -58,7 +60,7 @@ public class MyOrderHistoryAdapter extends ArrayAdapter<OrderHistoryItem>{
 		TextView orderIdText;
 		TextView orderDateText;
 		TextView restNameText;
-		TableLayout dishTable;
+		LinearLayout dishesLayout;
 	}
 	
     @Override
@@ -66,90 +68,118 @@ public class MyOrderHistoryAdapter extends ArrayAdapter<OrderHistoryItem>{
 		Log.i(TAG, "in getView");//test
 		
 		ViewHolder holder=null;
-		OrderHistoryItem orderHisItem = getItem(position);/////need?
-		
-		
-		//LayoutInflater mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);		
-		
+
 		//Reuse inflated convertView to reduce system consumption
 		// ( Reference: http://www.codeproject.com/Articles/316690/Custom-list-item-layout )
 		if(convertView == null) {
 			Log.i(TAG, "in create new convertView");//test
 			
-			//convertView = mInflater.inflate(R.layout.order_history_item, null);
-			
-			//test
 			LayoutInflater inflater = (LayoutInflater) mContext
 	                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	        convertView = inflater.inflate(R.layout.order_history_item, null);
-			//test ends
 			
 			holder = new ViewHolder();
 			
 			holder.orderIdText = (TextView)convertView.findViewById(R.id.history_order_id);//solve resource later
 			holder.orderDateText = (TextView)convertView.findViewById(R.id.history_order_date);
 			holder.restNameText = (TextView)convertView.findViewById(R.id.history_rest_name);
-			holder.dishTable = (TableLayout)convertView.findViewById(R.id.history_dishes_table);
+			holder.dishesLayout = (LinearLayout)convertView.findViewById(R.id.history_item_dishes_layout);
 				
 			convertView.setTag(holder);
+			
+//			OrderHistoryItem item = mItems.get(position);
+//			Log.i(TAG, "The Item position is: "+position);//test
+//			
+//			String orderid = String.valueOf(item.getOrderId());
+//			holder.orderIdText.setText("Order ID: #" + orderid);
+//			Log.i(TAG, "FINAL order ID in item is: "+orderid);//test
+//			String orderDateStr = String.valueOf(item.getOrderDate());
+//			holder.orderDateText.setText(orderDateStr);
+//			holder.restNameText.setText("Restaurant: " + String.valueOf(item.getRestName()));
+//			
+//			
+//			for(int i=0; i<item.getDishNameArr().size(); i++) {
+//	    		LinearLayout LL = new LinearLayout(mContext);
+//	        	//LL.setBackgroundColor(Color.CYAN);//test
+//	            LL.setOrientation(LinearLayout.HORIZONTAL);
+//	            
+//	            LayoutParams LLParams = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+//
+//	            //LL.setWeightSum(6f);
+//	            LL.setLayoutParams(LLParams);
+//	            
+//	            TextView dishName = new TextView(mContext);
+//	            TextView dishPrice = new TextView(mContext);
+//	            
+//	            dishName.setText(item.getDishNameArr().get(i));
+//	            Log.i(TAG, "dish name is for No."+i+"dish is: "+ dishName.getText());//test
+//	            String price = String.valueOf(item.getDishPriceArr().get(i));//int to string
+//				dishPrice.setText(price);
+//	            Log.i(TAG, "dish price is for No."+i+"dish is: "+ dishPrice.getText());//test
+//	            
+//	            dishName.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
+//	            dishPrice.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
+//	                        
+//	            LL.addView(dishName);
+//	            LL.addView(dishPrice);
+//	            
+//	            holder.dishesLayout.addView(LL);
+//	    	} 
+			
 		}
 		else {
 			Log.i(TAG, "in get old convertView");//test
 			holder = (ViewHolder) convertView.getTag();
+			
+//			holder.orderIdText = (TextView)convertView.findViewById(R.id.history_order_id);//solve resource later
+//			holder.orderDateText = (TextView)convertView.findViewById(R.id.history_order_date);
+//			holder.restNameText = (TextView)convertView.findViewById(R.id.history_rest_name);
+//			holder.dishesLayout = (LinearLayout)convertView.findViewById(R.id.history_item_dishes_layout);
 		}
-
-		//dishTablesss = (TableLayout)convertView.findViewById(R.id.history_dishes_table);/////
 		
-		//add
+		
 		OrderHistoryItem item = mItems.get(position);
+		Log.i(TAG, "The Item position is: "+position);//test
 		
-		holder.orderIdText.setText(String.valueOf(item.getOrderId()));
+		String orderid = String.valueOf(item.getOrderId());
+		holder.orderIdText.setText("Order ID: #" + orderid);
+		Log.i(TAG, "FINAL order ID in item is: "+orderid);//test
 		String orderDateStr = String.valueOf(item.getOrderDate());
 		holder.orderDateText.setText(orderDateStr);
-		holder.restNameText.setText(String.valueOf(item.getRestName()));
+		holder.restNameText.setText("Restaurant: " + String.valueOf(item.getRestName()));
 		
-		for(int current = 0; current < item.getDishNameArr().size(); current++) {
-			Log.i(TAG, "in insert TableRow for loop: round "+current);//test
-			
-			//create a TableRow and give it an ID
-			TableRow tr = new TableRow(mContext);
-			tr.setId(100 + current);
-			tr.setLayoutParams(new LayoutParams(
-					LayoutParams.MATCH_PARENT, 
-					LayoutParams.WRAP_CONTENT));
-			
-			//create a TextView to hold the dish name
-			TextView dishname = new TextView(mContext);
-			String dname = item.getDishNameArr().get(current);
-			dishname.setText(dname);
-			Log.i(TAG,"table row dish name: "+dname);//test
-			dishname.setLayoutParams(new LayoutParams(
-					LayoutParams.MATCH_PARENT,
-					LayoutParams.WRAP_CONTENT));
-			tr.addView(dishname);
-			
-			//create a TextView to hold the dish price
-			TextView dishprice = new TextView(mContext);
-			String price = String.valueOf(item.getDishPriceArr().get(current));//int to string
-			dishprice.setText(price);
-			Log.i(TAG,"table row price: "+price);//test
-			dishprice.setLayoutParams(new LayoutParams(
-					LayoutParams.MATCH_PARENT,
-					LayoutParams.WRAP_CONTENT));
-			tr.addView(dishprice);
-			
-			//add the TableRow to the TableLayout
-	
-			holder.dishTable.addView(tr, new TableLayout.LayoutParams(
-					LayoutParams.MATCH_PARENT,
-					LayoutParams.MATCH_PARENT));
-			
-					
+		holder.dishesLayout.removeAllViews();
+		
+		for(int i=0; i<item.getDishNameArr().size(); i++) {
+    		LinearLayout LL = new LinearLayout(mContext);
+        	//LL.setBackgroundColor(Color.CYAN);//test
+            LL.setOrientation(LinearLayout.HORIZONTAL);
+            
+            LayoutParams LLParams = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+
+            //LL.setWeightSum(6f);
+            LL.setLayoutParams(LLParams);
+            
+            TextView dishName = new TextView(mContext);
+            TextView dishPrice = new TextView(mContext);
+            
+            dishName.setText(item.getDishNameArr().get(i));
+            Log.i(TAG, "dish name is for No."+i+"dish is: "+ dishName.getText());//test
+            String price = String.valueOf(item.getDishPriceArr().get(i));//int to string
+			dishPrice.setText(price);
+            Log.i(TAG, "dish price is for No."+i+"dish is: "+ dishPrice.getText());//test
+            
+            dishName.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
+            dishPrice.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
+                        
+            LL.addView(dishName);
+            LL.addView(dishPrice);
+            
+            holder.dishesLayout.addView(LL);
 		}
-		//add ends
-		
-        return convertView;		
-		
+            
+        return convertView;	
+        
 	}
     
     
