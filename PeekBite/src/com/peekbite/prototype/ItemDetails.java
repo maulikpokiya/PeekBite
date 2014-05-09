@@ -3,9 +3,14 @@ package com.peekbite.prototype;
 import com.application.peekbite.MainActivity;
 import com.application.peekbite.R;
 import com.peekbite.model.TotalQuantity;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +25,9 @@ public class ItemDetails extends Activity implements OnClickListener {
 	int numberofItems = 0;
 	private TotalQuantity tq;
 	LinearLayout type1Layout, type2Layout, type3Layout, type4Layout, type5Layout;
+	ImageLoader imageLoader;
+	DisplayImageOptions options;
+	ImageLoaderConfiguration config;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +58,10 @@ public class ItemDetails extends Activity implements OnClickListener {
 		numberofItems = getIntent().getIntExtra("ITEMS", 0);
 		tq=(TotalQuantity)getApplication();
 		numberofItemsTextView.setText(tq.getNumberofItems() + "  Items");
+		config = new ImageLoaderConfiguration.Builder(this).build();
+		imageLoader = ImageLoader.getInstance();
+		imageLoader.init(config);
+		options = new DisplayImageOptions.Builder().build();
 		
 		/**
 		 * LOG OUT FUNCTION
@@ -70,14 +82,23 @@ public class ItemDetails extends Activity implements OnClickListener {
 		});
 		
 		Intent intent = getIntent();
+		Bundle extras = intent.getExtras();
+		
 		String dishname = intent.getStringExtra("dishname");
 		String dishcost = intent.getStringExtra("dishcost");
-		int dishimageName = intent.getIntExtra("dishimage", 0);
-		System.out.println("-------dish: "+dishname+"---"+dishcost+"---"+dishimageName);
+		String dishurl = intent.getStringExtra("dishimage");
+//		String dishContent = intent.getStringExtra("dishContent");
+//		Bitmap bitmap = (Bitmap) intent.getParcelableExtra("dishimage");
+		/*byte[] b = extras.getByteArray("dishimage");
+		Bitmap bmp = BitmapFactory.decodeByteArray(b, 0, b.length);*/
+//		int dishimageName = intent.getIntExtra("dishimage", 0);
+//		System.out.println("-------dish: "+dishname+"---"+dishcost+"---"+b);
 		costTextView.setText("$"+dishcost);
 		nameTextView.setText(dishname);
-		dishImageView.setImageResource(dishimageName);
+//		itmDescTextView.setText(dishContent);
+//		dishImageView.setImageBitmap(bitmap);
 		
+		imageLoader.displayImage(dishurl, dishImageView);
 	}
 
 	@Override
