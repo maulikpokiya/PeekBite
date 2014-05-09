@@ -174,7 +174,7 @@ public class HomeScreenActivity extends ListActivity implements OnClickListener{
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					intent.putExtra("KEY", "Main");
 
-					//put order into buncle
+					//put order into bundle
 					Bundle extras = new Bundle();
 					extras.putSerializable("foodOrdering",(Serializable) foodOrdering);
 					intent.putExtras(extras);

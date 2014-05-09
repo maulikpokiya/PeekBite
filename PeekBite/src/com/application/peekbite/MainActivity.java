@@ -87,7 +87,7 @@ public class MainActivity extends Activity {
 	 */
 	//Override
 	protected void onNewIntent(Intent intent) {
-	// TODO Auto-generated method stub
+
 	super.onNewIntent(intent);
 	//ÍË³ö
 	        if ((Intent.FLAG_ACTIVITY_CLEAR_TOP & intent.getFlags()) != 0) {
@@ -160,6 +160,8 @@ public class MainActivity extends Activity {
 			try {
 				// Checking for SUCCESS TAG
 				int success = json.getInt(TAG_SUCCESS);
+				int id = json.getInt("id");
+				String uname = json.getString("uname");
 
 				if (success == 1) {
 
@@ -201,7 +203,6 @@ public class MainActivity extends Activity {
 			// dismiss the dialog after getting all products
 			pDialog.dismiss();
 		}
-
 	}
 	// End code change by Maulik
 }
