@@ -95,12 +95,12 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <TextView
+               <!--  <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Item Snippet"
                     android:textColor="#FFFFFF"
-                    android:textSize="12sp" />
+                    android:textSize="12sp" /> -->
             </LinearLayout>
 
             <!-- Amount -->

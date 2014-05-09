@@ -25,13 +25,14 @@ public class ItemDetails extends Activity implements OnClickListener {
 	int numberofItems = 0;
 	private TotalQuantity tq;
 	LinearLayout type1Layout, type2Layout, type3Layout, type4Layout, type5Layout;
+	TextView tvItemDesc;
 	ImageLoader imageLoader;
 	DisplayImageOptions options;
 	ImageLoaderConfiguration config;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.item_details);
 		
@@ -40,6 +41,7 @@ public class ItemDetails extends Activity implements OnClickListener {
 		costTextView = (TextView)findViewById(R.id.dishcostTextView);
 		nameTextView = (TextView)findViewById(R.id.dishnameTextView);
 		dishImageView = (ImageView)findViewById(R.id.dishImageView);
+		tvItemDesc = (TextView)findViewById(R.id.itemDescriptionTextView);
 		/**
 		 * 
 		
@@ -54,10 +56,12 @@ public class ItemDetails extends Activity implements OnClickListener {
 		type3Layout.setOnClickListener(this);
 		type4Layout.setOnClickListener(this);
 		type5Layout.setOnClickListener(this); */
-		
-		numberofItems = getIntent().getIntExtra("ITEMS", 0);
+		Intent newIntent = getIntent();
+		numberofItems = newIntent.getIntExtra("ITEMS", 0);
 		tq=(TotalQuantity)getApplication();
 		numberofItemsTextView.setText(tq.getNumberofItems() + "  Items");
+		tvItemDesc.setText(newIntent.getStringExtra("dishContent"));
+		
 		config = new ImageLoaderConfiguration.Builder(this).build();
 		imageLoader = ImageLoader.getInstance();
 		imageLoader.init(config);

@@ -350,7 +350,7 @@ public class HomeScreenActivity extends ListActivity implements OnClickListener{
 				      
 					intent.putExtra("ITEMS", tq.getNumberofItems());
 					intent.putExtra("dishname", dishNames.get(position));
-//					intent.putExtra("dishContent", dishIngredients.get(position));
+					intent.putExtra("dishContent", dishIngredients.get(position));
 					intent.putExtra("dishcost",
 							Integer.toString(dishCosts.get(position)));
 					intent.putExtra("dishimage", dishUrls.get(position));
