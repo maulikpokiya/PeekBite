@@ -3,18 +3,15 @@ package com.peekbite.controller;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.application.peekbite.R;
@@ -85,60 +82,15 @@ public class MyOrderHistoryAdapter extends ArrayAdapter<OrderHistoryItem>{
 			holder.restNameText = (TextView)convertView.findViewById(R.id.history_rest_name);
 			holder.dishesLayout = (LinearLayout)convertView.findViewById(R.id.history_item_dishes_layout);
 				
-			convertView.setTag(holder);
-			
-//			OrderHistoryItem item = mItems.get(position);
-//			Log.i(TAG, "The Item position is: "+position);//test
-//			
-//			String orderid = String.valueOf(item.getOrderId());
-//			holder.orderIdText.setText("Order ID: #" + orderid);
-//			Log.i(TAG, "FINAL order ID in item is: "+orderid);//test
-//			String orderDateStr = String.valueOf(item.getOrderDate());
-//			holder.orderDateText.setText(orderDateStr);
-//			holder.restNameText.setText("Restaurant: " + String.valueOf(item.getRestName()));
-//			
-//			
-//			for(int i=0; i<item.getDishNameArr().size(); i++) {
-//	    		LinearLayout LL = new LinearLayout(mContext);
-//	        	//LL.setBackgroundColor(Color.CYAN);//test
-//	            LL.setOrientation(LinearLayout.HORIZONTAL);
-//	            
-//	            LayoutParams LLParams = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
-//
-//	            //LL.setWeightSum(6f);
-//	            LL.setLayoutParams(LLParams);
-//	            
-//	            TextView dishName = new TextView(mContext);
-//	            TextView dishPrice = new TextView(mContext);
-//	            
-//	            dishName.setText(item.getDishNameArr().get(i));
-//	            Log.i(TAG, "dish name is for No."+i+"dish is: "+ dishName.getText());//test
-//	            String price = String.valueOf(item.getDishPriceArr().get(i));//int to string
-//				dishPrice.setText(price);
-//	            Log.i(TAG, "dish price is for No."+i+"dish is: "+ dishPrice.getText());//test
-//	            
-//	            dishName.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
-//	            dishPrice.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
-//	                        
-//	            LL.addView(dishName);
-//	            LL.addView(dishPrice);
-//	            
-//	            holder.dishesLayout.addView(LL);
-//	    	} 
-			
+			convertView.setTag(holder);			
 		}
 		else {
 			Log.i(TAG, "in get old convertView");//test
 			holder = (ViewHolder) convertView.getTag();
-			
-//			holder.orderIdText = (TextView)convertView.findViewById(R.id.history_order_id);//solve resource later
-//			holder.orderDateText = (TextView)convertView.findViewById(R.id.history_order_date);
-//			holder.restNameText = (TextView)convertView.findViewById(R.id.history_rest_name);
-//			holder.dishesLayout = (LinearLayout)convertView.findViewById(R.id.history_item_dishes_layout);
 		}
 		
 		
-		OrderHistoryItem item = mItems.get(position);
+		final OrderHistoryItem item = mItems.get(position);
 		Log.i(TAG, "The Item position is: "+position);//test
 		
 		String orderid = String.valueOf(item.getOrderId());
@@ -151,29 +103,42 @@ public class MyOrderHistoryAdapter extends ArrayAdapter<OrderHistoryItem>{
 		holder.dishesLayout.removeAllViews();
 		
 		for(int i=0; i<item.getDishNameArr().size(); i++) {
+			
     		LinearLayout LL = new LinearLayout(mContext);
-        	//LL.setBackgroundColor(Color.CYAN);//test
-            LL.setOrientation(LinearLayout.HORIZONTAL);
-            
+            LL.setOrientation(LinearLayout.HORIZONTAL);           
             LayoutParams LLParams = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
-
-            //LL.setWeightSum(6f);
             LL.setLayoutParams(LLParams);
             
             TextView dishName = new TextView(mContext);
             TextView dishPrice = new TextView(mContext);
+            Button shareDishOnFB = new Button(mContext);
             
-            dishName.setText(item.getDishNameArr().get(i));
-            Log.i(TAG, "dish name is for No."+i+"dish is: "+ dishName.getText());//test
+            final String dname = item.getDishNameArr().get(i);
+            dishName.setText(dname);
+            Log.i(TAG, "dish name is for No."+i+" dish is: "+ dishName.getText());//test
             String price = String.valueOf(item.getDishPriceArr().get(i));//int to string
 			dishPrice.setText(price);
-            Log.i(TAG, "dish price is for No."+i+"dish is: "+ dishPrice.getText());//test
+            Log.i(TAG, "dish price is for No."+i+" dish is: "+ dishPrice.getText());//test
+            shareDishOnFB.setText("Share this dish on Facebook");
             
             dishName.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
             dishPrice.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
+            shareDishOnFB.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
                         
             LL.addView(dishName);
             LL.addView(dishPrice);
+            
+            shareDishOnFB.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(mContext, ConfirmShareFBActivity.class);
+					intent.putExtra("restName", String.valueOf(item.getRestName()));
+					intent.putExtra("dishName", dname);
+					mContext.startActivity(intent);					
+				}
+			});
+            LL.addView(shareDishOnFB);
             
             holder.dishesLayout.addView(LL);
 		}

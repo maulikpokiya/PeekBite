@@ -60,7 +60,14 @@
             android:label="@string/title_activity_my_order_history" >
         </activity>
         <!-- Nan Add at 8:21PM, April 30th ENDS-->
-        
+
+        <!-- Nan Add at 12:09PM, May 10th-->
+        <activity
+            android:name="com.peekbite.controller.ConfirmShareFBActivity"
+            android:label="@string/title_activity_confirm_share" >
+        </activity>
+        <!-- Nan Add at 12:09PM, May 10th ENDS-->
+                
         <activity
             android:name="com.peekbite.registration.RegistrationFinished"
             android:label="@string/title_activity_registration_finished" >

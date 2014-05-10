@@ -9,6 +9,9 @@
     <string name="title_activity_frongpage">Front page</string>
     <string name="title_activity_my_profile">Profile page</string>
     <string name="title_activity_my_order_history">Order History page</string>
+    <!-- Nan Edit -->
+    <string name="title_activity_confirm_share">Confirm Sharing on Facebook</string>    
+    
     
     <string name="rememberPwd">Remember Password</string>
     <string name="title_activity_registration_finished">RegistrationFinished</string>
