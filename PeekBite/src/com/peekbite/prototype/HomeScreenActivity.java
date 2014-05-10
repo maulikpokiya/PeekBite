@@ -82,7 +82,7 @@ public class HomeScreenActivity extends ListActivity implements OnClickListener{
 //	private ItemsAdapter adapter;
 	private ListView listView;
 	// ProgressDialog progressDialog;
-	public GetMenu menu;
+//	public GetMenu menu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +172,16 @@ public class HomeScreenActivity extends ListActivity implements OnClickListener{
 					Intent intent = new Intent(HomeScreenActivity.this,
 							OrderScreen.class);
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					intent.putExtra("order", food);
 					intent.putExtra("KEY", "Main");
+					String[] foodArray = new String[food.size()];
+					
+					for(int i=0; i<foodArray.length; i++) {
+						foodArray[i] = food.get(i);
+					}
+
+					// storing order to database in background thread
+					new StoreOrder().execute(foodArray);
 
 					//put order into bundle
 					Bundle extras = new Bundle();
@@ -189,7 +198,9 @@ public class HomeScreenActivity extends ListActivity implements OnClickListener{
 				}
 			}
 		});
-		new GetMenu().execute("data");
+		String data = getIntent().getDataString();
+//		String data = "Papa Johns";
+		new GetMenu().execute(data);
 		// synchronized(this) {
 			/**
 		 * log out function
@@ -208,7 +219,6 @@ public class HomeScreenActivity extends ListActivity implements OnClickListener{
 				HomeScreenActivity.this.finish();
 				//finish();//¹Øµô×Ô¼º
 				Toast.makeText(HomeScreenActivity.this, "You logged out!", Toast.LENGTH_SHORT).show();
-				 
 			}
 		});
 		
@@ -549,7 +559,7 @@ public class HomeScreenActivity extends ListActivity implements OnClickListener{
 
 				// Building Parameters
 				List<NameValuePair> params = new ArrayList<NameValuePair>();
-				params.add(new BasicNameValuePair("data", args.toString()));
+				params.add(new BasicNameValuePair("data", args[0].toString()));
 
 				// getting JSON Object
 				JSONObject json = jsonParser.makeHttpRequest(url_get_menu,

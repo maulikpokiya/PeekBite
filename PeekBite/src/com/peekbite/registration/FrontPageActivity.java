@@ -12,6 +12,7 @@ import com.application.peekbite.R;
 import com.peekbite.controller.MyOrderHistoryActivity;
 import com.peekbite.controller.MyProfileActivity;
 import com.peekbite.prototype.HomeScreenActivity;
+import com.peekbite.qrcode.CaptureActivity;
 
 public class FrontPageActivity extends Activity {
 	
@@ -35,11 +36,9 @@ public class FrontPageActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				scanQRCode();
-				
 			}
 		});
-		
-		
+
 		//add by Nan at 7:42 pm, April 27th
 		mMyProfile = (TextView)findViewById(R.id.myProfileLink);
 		mMyProfile.setOnClickListener(new View.OnClickListener() {
@@ -49,8 +48,7 @@ public class FrontPageActivity extends Activity {
 				startMyProfile();
 			}
 		});
-		
-		
+
 		mMyOrderHistory = (TextView)findViewById(R.id.myOrderHistoryLink);
 		mMyOrderHistory.setOnClickListener(new View.OnClickListener() {
 			
@@ -61,16 +59,14 @@ public class FrontPageActivity extends Activity {
 		});
 		//add ENDs
 	}
-	
-	
-	
+
 	public void scanQRCode() {
 
 		Log.i(TAG, "in scanQRCode()");//test
 		
 		Intent intent = new Intent();
-//		intent.setClass(this, CaptureActivity.class);
-		intent.setClass(this, HomeScreenActivity.class);
+		intent.setClass(this, CaptureActivity.class);
+//		intent.setClass(this, HomeScreenActivity.class);
 		startActivity(intent);
 	}
 	
@@ -89,5 +85,4 @@ public class FrontPageActivity extends Activity {
 		startActivity(intent);
 	}
 	//add ENDs
-	
 }
