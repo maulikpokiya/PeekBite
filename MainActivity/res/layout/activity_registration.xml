@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:orientation="vertical"
+			    android:background="@color/Blue" >
+             
+	<ImageView
+	    android:id="@+id/imageView1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:contentDescription="@string/pkLogoDescription"
+	    android:src="@drawable/logo_shot" />
+
+	<EditText
+	  	android:id="@+id/signupEmail"
+	  	android:layout_width="fill_parent"
+	   	android:layout_height="wrap_content"
+	   	android:layout_marginTop="10dp"
+	  	android:layout_marginLeft="50dp"
+		android:layout_marginRight="50dp"
+	   	android:padding="5dp"
+		android:background="@drawable/rounded_edittext"
+	  	android:inputType="textEmailAddress"
+	  	android:textSize="12sp"
+	  	android:hint="Email" />
+	
+	<EditText 
+		android:id="@+id/signupUserFirstName"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:layout_marginLeft="50dp"
+		android:layout_marginRight="50dp"
+		android:padding="5dp"
+		android:background="@drawable/rounded_edittext" 
+		android:inputType="text"
+		android:textSize="12sp"
+		android:hint="First Name"  />
+	
+	<EditText 
+		android:id="@+id/signupUserLastName"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:layout_marginLeft="50dp"
+		android:layout_marginRight="50dp"
+		android:padding="5dp"
+		android:background="@drawable/rounded_edittext" 
+		android:inputType="text"
+		android:textSize="12sp"
+		android:hint="Last Name"  />
+          
+	<EditText
+        android:id="@+id/singupPwd"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+		android:layout_marginRight="50dp"
+        android:padding="5dp"
+		android:background="@drawable/rounded_edittext"
+        android:inputType="textPassword" 
+        android:textSize="12sp"
+        android:hint="Password" />	
+       
+	<EditText
+		android:id="@+id/singupPwd2"
+       	android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+	   	android:layout_marginRight="50dp"
+        android:padding="5dp"
+	   	android:background="@drawable/rounded_edittext"
+       	android:inputType="textPassword" 
+       	android:textSize="12sp"
+       	android:hint="Re-type Password" />
+ 	
+    
+	<CheckBox
+		android:id="@+id/check"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:layout_marginLeft="65dp"
+		android:layout_marginRight="20dp"
+		android:textColor="@color/White"
+		android:textSize="12sp"
+		android:text="@string/checkBoxText_Accept" />
+	    
+
+    
+	<Button
+		android:id="@+id/registrationButton"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="20dp"
+		android:layout_marginLeft="200dp"
+		android:background="@drawable/rounded_button_yellow"
+		android:textSize="12sp"
+		android:textColor="@color/Blue"
+		android:text="@string/buttonText_Signup" />
+
+	
+</LinearLayout>
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView 
+        	android:id="@+id/profile"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="My Profile"
+	        android:textSize="18sp" 
+	        android:textColor="@color/White"
+	        android:background="@color/Blue"/>
+    
+    <View
+  	android:layout_width="1dp"
+  	android:layout_height="5dp">
+	</View> 
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_username_title"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+    
+    <TextView
+        android:id="@+id/profile_username_text"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:text="@string/profile_username"/>
+    <View
+  	android:layout_width="1dp"
+  	android:layout_height="10dp">
+	</View>
+    <Button
+        android:id="@+id/profile_change_password_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_button"
+        android:background="@drawable/blue_button"
+        style="@style/button_text"
+        android:layout_marginLeft="50dip"
+          />
+    
+
+</LinearLayout>
