@@ -167,6 +167,10 @@ public class MainActivity extends Activity {
 
 					Intent frontPage = new Intent(getApplicationContext(),
 							FrontPageActivity.class);
+					//add
+					frontPage.putExtra("userID", id);
+					frontPage.putExtra("userName", uname);
+					//add ends
 					// Closing all previous activities
 					// i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(frontPage);

@@ -66,6 +66,10 @@
             android:name="com.peekbite.controller.ConfirmShareFBActivity"
             android:label="@string/title_activity_confirm_share" >
         </activity>
+        <activity
+            android:name="com.peekbite.controller.ChangeUserPasswordActivity"
+            android:label="@string/title_activity_change_password" >
+        </activity>
         <!-- Nan Add at 12:09PM, May 10th ENDS-->
                 
         <activity

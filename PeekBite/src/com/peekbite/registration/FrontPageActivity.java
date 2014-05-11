@@ -20,6 +20,10 @@ public class FrontPageActivity extends Activity {
 	//add by Nan at 7:42 pm, April 27th
 	private TextView mMyProfile;
 	private TextView mMyOrderHistory;
+	//add
+	private int uid;
+	private String uname;
+	//add ends
 	
 	private final static String TAG = "FrontPageActivity";
 	//add ENDs
@@ -38,7 +42,22 @@ public class FrontPageActivity extends Activity {
 				scanQRCode();
 			}
 		});
-
+		
+		//add
+		Intent intent = getIntent();
+		Bundle bundle = intent.getExtras();
+		
+		if(bundle!=null) {
+			Log.i(TAG, "rest and dish are not NULL. Get Extras here");//test
+			uid = bundle.getInt("userID");
+			uname = bundle.getString("userName");
+		}
+		else {
+			uid = -1;
+			uname = null;
+		}
+		//add ends
+		
 		//add by Nan at 7:42 pm, April 27th
 		mMyProfile = (TextView)findViewById(R.id.myProfileLink);
 		mMyProfile.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +94,10 @@ public class FrontPageActivity extends Activity {
 		Log.i(TAG, "in startMyProfile()");//test
 		
 		Intent intent = new Intent(this, MyProfileActivity.class);
+		//add
+		intent.putExtra("userID", uid);
+		intent.putExtra("userName", uname);
+		//add ends
 		startActivity(intent);
 	}
 	
