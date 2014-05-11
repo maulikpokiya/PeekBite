@@ -43,6 +43,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.application.peekbite.MainActivity;
+import com.facebook.Session;
 import com.peekbite.model.TotalQuantity;
 
 public class HomeScreenActivity extends ListActivity implements OnClickListener{
@@ -202,18 +203,39 @@ public class HomeScreenActivity extends ListActivity implements OnClickListener{
 //		String data = "Papa Johns";
 		new GetMenu().execute(data);
 		// synchronized(this) {
-			/**
-		 * log out function
+		
+		/**
+		 * log out function - logout from peekbite as well as fb 
 		 */
 		logout_tv.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				// Log out from Fb session
+				Session session = Session.getActiveSession();
+				
+				 if (session != null) {
+
+				        if (!session.isClosed()) {
+				            session.closeAndClearTokenInformation();
+				            //clear your preferences if saved
+				        }
+				    } /*else {
+
+				        session = new Session(this);
+				        Session.setActiveSession(session);
+
+				        session.closeAndClearTokenInformation();
+				            //clear your preferences if saved
+
+				    }*/
+				 
 				tq.setNumberofItems(0);
 				Intent intent = new Intent(); 
 				intent.setClass(HomeScreenActivity.this, MainActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  //注意本行的FLAG设置
-				//tq.setNumberofItems(0);//clear the global variable totalQuantity to 0
+				//tq.setNumberofItems(0);
+				//clear the global variable totalQuantity to 0
 				startActivity(intent);
 				HomeScreenActivity.this.setResult(RESULT_CANCELED,intent);
 				HomeScreenActivity.this.finish();
