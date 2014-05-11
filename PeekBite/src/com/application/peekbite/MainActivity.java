@@ -1,6 +1,7 @@
 package com.application.peekbite;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -8,7 +9,14 @@ import org.apache.http.message.BasicNameValuePair;
 //import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import com.facebook.*;
+import com.facebook.model.*;
 
+import com.facebook.Request;
+import com.facebook.Session;
+import com.facebook.model.GraphUser;
+import com.facebook.widget.LoginButton;
+import com.facebook.widget.LoginButton.OnErrorListener;
 import com.peekbite.registration.FrontPageActivity;
 import com.peekbite.registration.JSONParser;
 import com.peekbite.registration.RegistrationActivity;
@@ -38,6 +46,8 @@ public class MainActivity extends Activity {
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
 
+	protected static final String TAG = "MainActivity";
+
 	// url to get all products list
 	private static String url_confirm_login = "http://peekbite.pinaksaha.me/confirm_login.php";
 
@@ -47,7 +57,7 @@ public class MainActivity extends Activity {
 	private EditText emailEditText = null;
 	private EditText pwdEditText = null;
 	private TextView signUpLink;
-	private Button logInButton;
+	private Button logInButton, fbAuthButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,27 +70,48 @@ public class MainActivity extends Activity {
 		
 		signUpLink = (TextView)findViewById(R.id.SignUpLink);
 		logInButton = (Button)findViewById(R.id.logInButton);
-		
-		
+		fbAuthButton = (Button)findViewById(R.id.authButton);
+
 		signUpLink.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
-				startActivity(intent);								
+				startActivity(intent);
 			}
 		});
-		
-		
+
 		logInButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
-			public void onClick(View v) {				
+			public void onClick(View v) {
 				login();
 			}
 		});
-				
+/*
+		fbAuthButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {				
+				fbLogin();
+			}
+		});*/
 	}
+
+	@Override
+	 public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	     super.onActivityResult(requestCode, resultCode, data);
+	     Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+	     
+	     if(resultCode == -1) {
+	     Intent frontPage = new Intent(getApplicationContext(),
+					FrontPageActivity.class);
+			// Closing all previous activities
+			// i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(frontPage);
+	     }
+	 }
+
 	
 	/**
 	 * log out and clear the entire session
@@ -95,6 +126,37 @@ public class MainActivity extends Activity {
 	        }
 	}
 
+	public void fbLogin() {
+		  // start Facebook Login
+	    Session.openActiveSession(this, true, new Session.StatusCallback() {
+
+	      // callback when session changes state
+	      @Override
+	      public void call(Session session, SessionState state, Exception exception) {
+	        if (session.isOpened()) {
+
+	          // make request to the /me API
+	          Request.newMeRequest(session, new Request.GraphUserCallback() {
+
+	            // callback after Graph API response with user object
+	            @Override
+	            public void onCompleted(GraphUser user, Response response) {
+	              if (user != null) {
+//	                TextView welcome = (TextView) findViewById(R.id.welcome);
+//	                welcome.setText("Hello " + user.getName() + "!");
+	            	  Intent frontPage = new Intent(getApplicationContext(),
+								FrontPageActivity.class);
+						// Closing all previous activities
+						// i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						startActivity(frontPage);
+	              }
+	            }
+	          }).executeAsync();
+	        }
+	      }
+	    });
+	}
+	
 	public void login() {
 		String Email = emailEditText.getText().toString().trim();
 		String password = pwdEditText.getText().toString().trim();

@@ -14,7 +14,6 @@
 	    android:src="@drawable/logo_shot" 
 	    android:contentDescription="@string/pkLogoDescription" />
 
-	
 	<EditText android:id="@+id/et_email"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
@@ -29,8 +28,6 @@
 		android:text="robin"
 		android:hint="Email" />
 
-
-
 	<EditText android:id="@+id/et_password"
 		android:inputType="textPassword" 
 		android:layout_width="fill_parent"
@@ -44,7 +41,7 @@
    		android:textSize="12sp"
    		android:text="1234"
    		android:hint="Password"  />
-	
+
 	<TextView 
 	    android:id="@+id/SignUpLink"
 	    android:layout_width="fill_parent"
@@ -65,5 +62,11 @@
 		android:textColor="@color/Blue"
 		android:text="@string/loginText"  />
 
-
+	<com.facebook.widget.LoginButton
+        android:id="@+id/authButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp" 
+        />
 </LinearLayout>

@@ -46,5 +46,6 @@
 	
 	<string name="history_dishname_title">Dish</string>
 	<string name="history_dishprice_title">Price</string>
+	<string name="app_id">841731002508186</string>
 
 </resources>
