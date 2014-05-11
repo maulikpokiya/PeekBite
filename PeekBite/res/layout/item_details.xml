@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#798945"
+        android:background="@color/Blue"
         android:orientation="horizontal" >
 
         <Button
@@ -19,19 +19,18 @@
             android:background="@drawable/manuselector" />
 
         <TextView
-            android:id="@+id/orderTxt"
+            android:id="@+id/logoutTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="bottom|center"
             android:singleLine="true"
-            android:text="Ready to Order"
+            android:text="Log Out"
             android:textColor="#b2dd5d"
             android:textSize="18px"
             android:textStyle="bold" />
 
-         
         <!-- shopping cart -->
         <ImageView
             android:id="@+id/rateButton_main"
@@ -42,8 +41,6 @@
             android:layout_weight="1"
             android:background="@drawable/cartselector"
             android:gravity="bottom|center" />
-
-        
 
         <TextView
             android:id="@+id/numberof_itemsTxt"
@@ -74,8 +71,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-
-               
 
                 <LinearLayout
                     android:id="@+id/addcartLayout"
@@ -153,12 +148,12 @@
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <!-- <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Item Snippet"
                             android:textColor="#FFFFFF"
-                            android:textSize="12sp" />
+                            android:textSize="12sp" /> -->
                     </LinearLayout>
 
                     <TextView
@@ -167,7 +162,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginRight="5dp"
-                        android:text="$50"
                         android:textColor="#FFFFFF"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -184,21 +178,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:text="
-				        Item Description 
-				        Item Description
-				        Item Description
-				        Item Description 
-				        Item Description 
-				        Item Description "
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
-
+<!--  
     <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        layout="@layout/categories_bottom_menu" />
+        layout="@layout/categories_bottom_menu" />-->
 
 </LinearLayout>

@@ -26,6 +26,7 @@ public class SplashScreen extends Activity {
 		 * activity.
 		 */
 		runnable = new Runnable() {
+			@Override
 			public void run() {
 				try {
 					Thread.sleep(sleepTime);

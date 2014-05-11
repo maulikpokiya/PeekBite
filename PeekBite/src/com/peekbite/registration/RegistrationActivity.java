@@ -156,6 +156,7 @@ public class RegistrationActivity extends Activity {
 		/**
 		 * Creating user
 		 * */
+		@Override
 		protected String doInBackground(String... args) {
 
 			// Building Parameters
@@ -186,6 +187,7 @@ public class RegistrationActivity extends Activity {
 				} else {
 					// failed to create User
 					RegistrationActivity.this.runOnUiThread(new Runnable() {
+						@Override
 						public void run() {
 							// your alert dialog builder here
 							new AlertDialog.Builder(RegistrationActivity.this)
@@ -209,6 +211,7 @@ public class RegistrationActivity extends Activity {
 		/**
 		 * After completing background task Dismiss the progress dialog
 		 * **/
+		@Override
 		protected void onPostExecute(String file_url) {
 			// dismiss the dialog after getting all products
 			pDialog.dismiss();

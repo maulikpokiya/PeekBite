@@ -7,6 +7,12 @@
     <string name="password_tv">Password</string>
     <string name="title_activity_registration">RegistrationActivity</string>
     <string name="title_activity_frongpage">Front page</string>
+    <string name="title_activity_my_profile">Profile page</string>
+    <string name="title_activity_my_order_history">Order History page</string>
+    <!-- Nan Edit -->
+    <string name="title_activity_confirm_share">Confirm Sharing on Facebook</string>
+    <string name="title_activity_change_password">Change User Password</string>    
+    
     
     <string name="rememberPwd">Remember Password</string>
     <string name="title_activity_registration_finished">RegistrationFinished</string>
@@ -27,6 +33,18 @@
     
     <string name="scanQRText">Scan e-menu</string>
     <string name="myProfileText">My Profile</string>
-    <string name="myRestaurantText">My Restaurant</string>
+    <string name="myOrderHistoryText">My Orders</string>
+    
+    <string name="history_order_id_text">Order ID: </string>
+	<string name="history_order_date_text">Order Date: </string> 
+	<string name="history_rest_name_text">Restuarant: </string>
+	
+	<string name="profile_title">Profile</string>
+	<string name="profile_username_title">User Name: </string>
+	<string name="profile_username">Robin@gmail.com</string>
+	<string name="profile_button">Change Password</string>
+	
+	<string name="history_dishname_title">Dish</string>
+	<string name="history_dishprice_title">Price</string>
 
 </resources>

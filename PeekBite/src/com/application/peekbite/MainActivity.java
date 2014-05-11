@@ -82,8 +82,18 @@ public class MainActivity extends Activity {
 				
 	}
 	
-	
-	
+	/**
+	 * log out and clear the entire session
+	 */
+	//Override
+	protected void onNewIntent(Intent intent) {
+
+	super.onNewIntent(intent);
+	//ÍË³ö
+	        if ((Intent.FLAG_ACTIVITY_CLEAR_TOP & intent.getFlags()) != 0) {
+	               finish();
+	        }
+	}
 
 	public void login() {
 		String Email = emailEditText.getText().toString().trim();
@@ -132,6 +142,7 @@ public class MainActivity extends Activity {
 		/**
 		 * getting All products from url
 		 * */
+		@Override
 		protected String doInBackground(String... args) {
 
 			// Building Parameters
@@ -149,17 +160,24 @@ public class MainActivity extends Activity {
 			try {
 				// Checking for SUCCESS TAG
 				int success = json.getInt(TAG_SUCCESS);
+				int id = json.getInt("id");
+				String uname = json.getString("uname");
 
 				if (success == 1) {
 
 					Intent frontPage = new Intent(getApplicationContext(),
 							FrontPageActivity.class);
+					//add
+					frontPage.putExtra("userID", id);
+					frontPage.putExtra("userName", uname);
+					//add ends
 					// Closing all previous activities
 					// i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(frontPage);
 
 				} else {
 					MainActivity.this.runOnUiThread(new Runnable() {
+						@Override
 						public void run() {
 							// your alert dialog builder here
 							new AlertDialog.Builder(MainActivity.this)
@@ -184,11 +202,11 @@ public class MainActivity extends Activity {
 		/**
 		 * After completing background task Dismiss the progress dialog
 		 * **/
+		@Override
 		protected void onPostExecute(String file_url) {
 			// dismiss the dialog after getting all products
 			pDialog.dismiss();
 		}
-
 	}
 	// End code change by Maulik
 }

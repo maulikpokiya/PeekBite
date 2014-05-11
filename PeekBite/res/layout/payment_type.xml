@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    >
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#798945"
-        android:orientation="horizontal" >
+        android:orientation="horizontal" 
+        android:background="@color/Blue">
 
         <Button
             android:id="@+id/categoryButton_MainActivity"
@@ -19,18 +20,17 @@
             android:background="@drawable/manuselector" />
 
         <TextView
-            android:id="@+id/orderTxt"
+            android:id="@+id/logout_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="bottom|center"
             android:singleLine="true"
-            android:text="Ready to Order"
+            android:text="Log Out"
             android:textColor="#b2dd5d"
-            android:textSize="25px"
-            android:textStyle="bold"
-            android:visibility="invisible" />
+            android:textSize="18px"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/rateButton_main"
@@ -129,6 +129,7 @@
                         android:padding="5dp" >
 
                         <TextView
+                            android:id="@+id/countdown"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="15 Minutes"
@@ -311,10 +312,10 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
+<!--  
     <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        layout="@layout/categories_bottom_menu" />
+        layout="@layout/categories_bottom_menu" />-->
 
 </LinearLayout>

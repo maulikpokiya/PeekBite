@@ -29,6 +29,7 @@ public abstract class DialogClass implements DialogInterface.OnClickListener {
 		alertbox.setCancelable(calncelable);
 		alertbox.setMessage(setmessage);
 		alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
 				Intent intent = new Intent(context, HomeScreenActivity.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -45,6 +46,7 @@ public abstract class DialogClass implements DialogInterface.OnClickListener {
 		alertbox.setCancelable(calncelable);
 		alertbox.setMessage(setmessage);
 		alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
 //				Intent intent = new Intent(context, MainActivity.class);
 //				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

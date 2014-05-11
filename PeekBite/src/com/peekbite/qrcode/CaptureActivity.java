@@ -25,10 +25,12 @@ import android.view.SurfaceView;
 import com.application.peekbite.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+import com.peekbite.prototype.HomeScreenActivity;
 import com.peekbite.qrcode.camera.CameraManager;
 import com.peekbite.qrcode.decoding.CaptureActivityHandler;
 import com.peekbite.qrcode.decoding.InactivityTimer;
 import com.peekbite.qrcode.view.ViewfinderView;
+import com.peekbite.registration.FrontPageActivity;
 
 public class CaptureActivity extends Activity implements Callback
 {
@@ -187,8 +189,9 @@ public class CaptureActivity extends Activity implements Callback
 			public void onClick(DialogInterface dialog, int which)
 			{
 				//用默认浏览器打开扫描得到的地址
-				Intent intent = new Intent();
-				intent.setAction("android.intent.action.VIEW");
+				Intent intent = new Intent(getApplicationContext(),
+						HomeScreenActivity.class);
+//				intent.setAction("android.intent.action.VIEW");
 				Uri content_url = Uri.parse(obj.getText());
 				intent.setData(content_url);
 				startActivity(intent);
@@ -253,6 +256,7 @@ public class CaptureActivity extends Activity implements Callback
 	 */
 	private final OnCompletionListener beepListener = new OnCompletionListener()
 	{
+		@Override
 		public void onCompletion(MediaPlayer mediaPlayer)
 		{
 			mediaPlayer.seekTo(0);

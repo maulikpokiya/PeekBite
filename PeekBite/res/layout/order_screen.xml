@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#798945"
         android:orientation="horizontal"
+        android:background="@color/Blue"
+        
          >
 
         <Button
@@ -20,18 +22,17 @@
             android:background="@drawable/manuselector" />
 
         <TextView
-            android:id="@+id/orderTxt"
+            android:id="@+id/logout_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="bottom|center"
             android:singleLine="true"
-            android:text="Ready to Order"
+            android:text="Log Out"
             android:textColor="#b2dd5d"
-            android:textSize="25px"
-            android:textStyle="bold"
-            android:visibility="invisible" />
+            android:textSize="18px"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/rateButton_main"
@@ -244,16 +245,16 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:singleLine="true"
-                        android:text="Taxes"
+                        android:text="Taxes(8.875%)"
                         android:textColor="#000000"
                         android:textSize="16px" />
 
                     <TextView
+                        android:id="@+id/taxcost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:singleLine="true"
-                        android:text="$9.15"
                         android:textColor="#000000"
                         android:textSize="16px" />
                 </TableRow>
@@ -340,13 +341,13 @@
                         android:textSize="18px" />
                 </TableRow>
             </TableLayout>
-            
+           <!-- 
 	        <include
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				layout="@layout/categories_bottom_menu"
 				/> 
-	        
+	         --> 
         </LinearLayout>
         
 <!--         	        <include

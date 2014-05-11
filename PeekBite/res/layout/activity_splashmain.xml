@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#636474"
+        android:background="@color/Blue"
         android:orientation="horizontal" >
 
         <Button
@@ -18,19 +18,20 @@
             android:layout_weight="1"
             android:background="@drawable/manuselector" />
 
-        <TextView
-            android:id="@+id/orderTxt"
+       <TextView
+            android:id="@+id/logout_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="bottom|center"
             android:singleLine="true"
-            android:text="Ready to Order"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:text="Log Out"
+            android:textColor="#b2dd5d"
+            android:textSize="18px"
             android:textStyle="bold" />
 
+       <!--  -->
         <ImageView
             android:id="@+id/rateButton_main"
             android:layout_width="wrap_content"
@@ -77,10 +78,10 @@
         android:layout_gravity="center"
         android:layout_weight="1" >
     </ListView>
-
+<!--  
     <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        layout="@layout/categories_bottom_menu" />
+        layout="@layout/categories_bottom_menu" />-->
 
 </LinearLayout>
