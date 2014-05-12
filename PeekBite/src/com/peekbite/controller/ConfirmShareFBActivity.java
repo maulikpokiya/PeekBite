@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.application.peekbite.R;
 
@@ -37,6 +39,16 @@ public class ConfirmShareFBActivity extends Activity{
 			dish = bundle.getString("dishName");
 			mConfirmMessage.setText("Do you really want to share the post: \"I like "+ dish +" at "+ rest +".\"?");
 		}
+		
+		mConfirmButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Log.i(TAG, "click confirm share on FB button");//test
+				
+				Toast.makeText(ConfirmShareFBActivity.this, "Coming Soon!", Toast.LENGTH_SHORT).show();
+			}
+		});
 		
 	}
 }

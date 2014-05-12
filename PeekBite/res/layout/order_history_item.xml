@@ -44,18 +44,17 @@
        	
        	<TextView 
             android:id="@+id/history_dishname_title"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:paddingLeft="10dp"
             android:textSize="14sp"
             android:text="@string/history_dishname_title" />
         
         <TextView 
             android:id="@+id/history_dishprice_title"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="155dp"
             android:textSize="14sp"
             android:text="@string/history_dishprice_title" />	        
     </LinearLayout>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.application.peekbite.R;
+import com.application.peekbite.R.color;
+import com.application.peekbite.R.drawable;
 import com.peekbite.model.OrderHistoryItem;
 
 public class MyOrderHistoryAdapter extends ArrayAdapter<OrderHistoryItem>{
@@ -120,10 +123,16 @@ public class MyOrderHistoryAdapter extends ArrayAdapter<OrderHistoryItem>{
 			dishPrice.setText(price);
             Log.i(TAG, "dish price is for No."+i+" dish is: "+ dishPrice.getText());//test
             shareDishOnFB.setText("Share this dish on Facebook");
+            shareDishOnFB.setBackgroundResource(drawable.rounded_button_yellow);
+            shareDishOnFB.setTextSize(12);
+            shareDishOnFB.setTextColor(Color.parseColor("#00B4DF"));// color.Blue
             
             dishName.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
             dishPrice.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
-            shareDishOnFB.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
+            
+            LinearLayout.LayoutParams share_params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
+            share_params.setMargins(0, 10, 10, 10);
+            shareDishOnFB.setLayoutParams(share_params);
                         
             LL.addView(dishName);
             LL.addView(dishPrice);

@@ -3,19 +3,28 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/Blue" >
     
     <TextView 
         android:id="@+id/confirm_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"/>   
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="14sp"
+        android:textColor="@color/White"/>   
 
     
     <Button
         android:id="@+id/confirm_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+		android:layout_marginLeft="10dp"
+		android:background="@drawable/rounded_button_yellow"
+		android:textSize="12sp"
+		android:textColor="@color/Blue"
         android:text="Confirm" />
     
 </LinearLayout>
