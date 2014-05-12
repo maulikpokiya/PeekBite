@@ -1,17 +1,7 @@
 package com.peekbite.prototype;
 
-import com.application.peekbite.MainActivity;
-import com.application.peekbite.R;
-import com.facebook.Session;
-import com.peekbite.model.TotalQuantity;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,6 +9,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.application.peekbite.MainActivity;
+import com.application.peekbite.R;
+import com.facebook.Session;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.peekbite.model.TotalQuantity;
 
 public class ItemDetails extends Activity implements OnClickListener {
 	TextView logoutTV, numberofItemsTextView, costTextView, nameTextView;

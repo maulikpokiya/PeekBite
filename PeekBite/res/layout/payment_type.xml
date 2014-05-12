@@ -29,7 +29,7 @@
             android:singleLine="true"
             android:text="Log Out"
             android:textColor="#b2dd5d"
-            android:textSize="18px"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <ImageView
@@ -52,11 +52,11 @@
 
         <ImageView
             android:id="@+id/backBtn"
-            android:layout_width="40px"
+            android:layout_width="100px"
             android:layout_height="40px"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
-            android:background="@drawable/back"
+            android:background="@drawable/back_to_main_page"
             android:gravity="bottom|center" />
     </LinearLayout>
 

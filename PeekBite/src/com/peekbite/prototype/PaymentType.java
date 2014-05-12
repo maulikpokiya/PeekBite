@@ -1,6 +1,7 @@
 package com.peekbite.prototype;
 
 import com.application.peekbite.R;
+import com.peekbite.registration.FrontPageActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -76,7 +77,7 @@ public class PaymentType extends Activity implements OnClickListener{
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(PaymentType.this, PaymentModeScreen.class);
+				Intent intent = new Intent(PaymentType.this, FrontPageActivity.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				intent.putExtra("KEY", key);
 				startActivity(intent);

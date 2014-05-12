@@ -6,22 +6,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.application.peekbite.MainActivity;
-import com.application.peekbite.R;
- 
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.application.peekbite.MainActivity;
+import com.application.peekbite.R;
 
 public class OrderScreen extends ListActivity implements OnClickListener {
 	Button payButton;

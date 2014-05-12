@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.application.peekbite.R;
 import com.peekbite.controller.MyOrderHistoryActivity;
 import com.peekbite.controller.MyProfileActivity;
-import com.peekbite.prototype.HomeScreenActivity;
 import com.peekbite.qrcode.CaptureActivity;
 
 public class FrontPageActivity extends Activity {

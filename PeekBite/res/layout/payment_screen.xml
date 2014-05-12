@@ -29,7 +29,7 @@
             android:singleLine="true"
             android:text="Log Out"
             android:textColor="#b2dd5d"
-            android:textSize="18px"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <ImageView
