@@ -2,6 +2,8 @@ package com.peekbite.prototype;
 
 import com.application.peekbite.MainActivity;
 import com.application.peekbite.R;
+import com.facebook.Session;
+import com.peekbite.model.TotalQuantity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,6 +22,9 @@ public class PaymentModeScreen extends Activity implements OnClickListener{
 	String key = "";
 	TextView logout_tv;
 	LinearLayout type1Layout, type2Layout, type3Layout, type4Layout, type5Layout;
+	private TotalQuantity tq;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -29,6 +34,8 @@ public class PaymentModeScreen extends Activity implements OnClickListener{
 		withPeekRow = (TableRow) findViewById(R.id.paywithpeek_row);
 		withCallWaiter = (TableRow) findViewById(R.id.callwaiter_row);
 		withCreditcard = (TableRow) findViewById(R.id.paywithcredit_row);
+		
+		tq=(TotalQuantity)getApplication();
 		/**
 		 * 
 		 
@@ -98,12 +105,25 @@ public class PaymentModeScreen extends Activity implements OnClickListener{
 			
 			@Override
 			public void onClick(View v) {
-				 
+				// Log out from Fb session
+				Session session = Session.getActiveSession();
+				
+				 if (session != null) {
+
+				        if (!session.isClosed()) {
+				            session.closeAndClearTokenInformation();
+				            //clear your preferences if saved
+				        }
+				    } 
+				
+				//clear the global variable totalQuantity to 0
+				tq.setNumberofItems(0);
 				Intent intent = new Intent(); 
 				intent.setClass(PaymentModeScreen.this, MainActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  //注意本行的FLAG设置
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
-				finish();//关掉自己
+				PaymentModeScreen.this.setResult(RESULT_CANCELED,intent);
+				PaymentModeScreen.this.finish();
 				Toast.makeText(PaymentModeScreen.this, "You logged out!", Toast.LENGTH_SHORT).show();
 				 
 			}

@@ -1,6 +1,9 @@
 package com.peekbite.prototype;
 
+import com.application.peekbite.MainActivity;
 import com.application.peekbite.R;
+import com.facebook.Session;
+import com.peekbite.model.TotalQuantity;
 import com.peekbite.registration.FrontPageActivity;
 
 import android.app.Activity;
@@ -13,6 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class PaymentType extends Activity implements OnClickListener{
 	Button  payButton;
@@ -23,26 +28,49 @@ public class PaymentType extends Activity implements OnClickListener{
 	String fname, cardnum, cwc, zip = "";
 	LinearLayout type1Layout, type2Layout, type3Layout, type4Layout, type5Layout;
 	private CountDownTimer time;
+	private TextView logout_tv;
+	private TotalQuantity tq;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.payment_type);
-		/**
-		 * 
-		 
-		type1Layout = (LinearLayout) findViewById(R.id.type1layout);
-		type2Layout = (LinearLayout) findViewById(R.id.type2layout);
-		type3Layout = (LinearLayout) findViewById(R.id.type3layout);
-		type4Layout = (LinearLayout) findViewById(R.id.type4layout);
-		type5Layout = (LinearLayout) findViewById(R.id.type5layout);
 		
-		type1Layout.setOnClickListener(this);
-		type2Layout.setOnClickListener(this);
-		type3Layout.setOnClickListener(this);
-		type4Layout.setOnClickListener(this);
-		type5Layout.setOnClickListener(this);*/
+		tq=(TotalQuantity)getApplication();
+		
+		logout_tv = (TextView) findViewById(R.id.logout_tv);
+		
+		/**
+		 * log out function - logout from peekbite as well as fb 
+		 */
+		logout_tv.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// Log out from Fb session
+				Session session = Session.getActiveSession();
+				
+				 if (session != null) {
+
+				        if (!session.isClosed()) {
+				            session.closeAndClearTokenInformation();
+				            //clear your preferences if saved
+				        }
+				    } 
+				
+				//clear the global variable totalQuantity to 0
+				tq.setNumberofItems(0);
+				Intent intent = new Intent(); 
+				intent.setClass(PaymentType.this, MainActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
+				PaymentType.this.setResult(RESULT_CANCELED,intent);
+				PaymentType.this.finish();
+				Toast.makeText(PaymentType.this, "You logged out!", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
 		
 		key = getIntent().getStringExtra("KEY");
 		type = getIntent().getStringExtra("TYPE");
@@ -55,20 +83,6 @@ public class PaymentType extends Activity implements OnClickListener{
 		cardnumberEditText = (EditText) findViewById(R.id.cardnumedttxt);
 		cwcEditText = (EditText) findViewById(R.id.cwcedttxt);
 		zipEditText = (EditText) findViewById(R.id.zipedttxt);
-		
-		/*if (type.equals("PEEK")) {
-			peekbiteLayout.setVisibility(View.VISIBLE);
-			callwaiterLayout.setVisibility(View.GONE);
-			creditcardLayout.setVisibility(View.GONE); 
-		 else if (type.equals("CALL")) {
-			peekbiteLayout.setVisibility(View.GONE);
-			callwaiterLayout.setVisibility(View.VISIBLE);
-			creditcardLayout.setVisibility(View.GONE);
-		} else if (type.equals("CREDIT")) {
-			peekbiteLayout.setVisibility(View.GONE);
-			callwaiterLayout.setVisibility(View.GONE);
-			creditcardLayout.setVisibility(View.VISIBLE);
-		}**/
 
 		backButton = (ImageView) findViewById(R.id.backBtn);
 		payButton = (Button) findViewById(R.id.paybtn);
