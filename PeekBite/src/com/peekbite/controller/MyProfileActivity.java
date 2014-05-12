@@ -60,6 +60,7 @@ public class MyProfileActivity extends Activity {
 	public void changePassword() {
 		Intent intent = new Intent(this, ChangeUserPasswordActivity.class);
 		intent.putExtra("userID", uid);
+		intent.putExtra("userName", uname);
 		startActivity(intent);
 	}
 	//add ends
