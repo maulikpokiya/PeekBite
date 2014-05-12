@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+	<string name="app_id">841731002508186</string>
     <string name="app_name">PeekBite</string>
     <string name="action_settings">Settings</string>
     <string name="username_tv">Username</string>

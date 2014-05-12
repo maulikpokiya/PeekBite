@@ -5,10 +5,9 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-//import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import com.facebook.Session;
 import com.peekbite.registration.FrontPageActivity;
 import com.peekbite.registration.JSONParser;
 import com.peekbite.registration.RegistrationActivity;
@@ -16,10 +15,8 @@ import com.peekbite.registration.RegistrationActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-//import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-//import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -38,11 +35,12 @@ public class MainActivity extends Activity {
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
 
+	protected static final String TAG = "MainActivity";
+	
 	// url to get all products list
 	private static String url_confirm_login = "http://peekbite.pinaksaha.me/confirm_login.php";
 
 	// end of code by Maulik
-	
 	
 	private EditText emailEditText = null;
 	private EditText pwdEditText = null;
@@ -61,26 +59,38 @@ public class MainActivity extends Activity {
 		signUpLink = (TextView)findViewById(R.id.SignUpLink);
 		logInButton = (Button)findViewById(R.id.logInButton);
 		
-		
 		signUpLink.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
-				startActivity(intent);								
+				startActivity(intent);
 			}
 		});
-		
-		
+
 		logInButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
-			public void onClick(View v) {				
+			public void onClick(View v) {
 				login();
 			}
-		});
-				
+		});	
 	}
+
+	@Override
+	 public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	     super.onActivityResult(requestCode, resultCode, data);
+	     Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+	     
+	     if(resultCode == -1) {
+	     Intent frontPage = new Intent(getApplicationContext(),
+					FrontPageActivity.class);
+			// Closing all previous activities
+			// i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(frontPage);
+	     }
+	 }
+
 	
 	/**
 	 * log out and clear the entire session
@@ -89,6 +99,26 @@ public class MainActivity extends Activity {
 	protected void onNewIntent(Intent intent) {
 
 	super.onNewIntent(intent);
+	Session session = Session.getActiveSession();
+
+	if (session != null) {
+
+		if (!session.isClosed()) {
+			session.closeAndClearTokenInformation();
+			// clear your preferences if saved
+		}
+	} /*
+	 * else {
+	 * 
+	 * session = new Session(this);
+	 * Session.setActiveSession(session);
+	 * 
+	 * session.closeAndClearTokenInformation(); //clear your
+	 * preferences if saved
+	 * 
+	 * }
+	 */
+	
 	//ÍË³ö
 	        if ((Intent.FLAG_ACTIVITY_CLEAR_TOP & intent.getFlags()) != 0) {
 	               finish();
