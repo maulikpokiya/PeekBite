@@ -2,9 +2,9 @@ package com.peekbite.controller;
 
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.application.peekbite.R;
-import com.application.peekbite.R.color;
-import com.application.peekbite.R.drawable;
 import com.peekbite.model.OrderHistoryItem;
 
 public class MyOrderHistoryAdapter extends ArrayAdapter<OrderHistoryItem>{
@@ -122,14 +120,17 @@ public class MyOrderHistoryAdapter extends ArrayAdapter<OrderHistoryItem>{
             String price = String.valueOf(item.getDishPriceArr().get(i));//int to string
 			dishPrice.setText(price);
             Log.i(TAG, "dish price is for No."+i+" dish is: "+ dishPrice.getText());//test
-            shareDishOnFB.setText("Share this dish on Facebook");
-            shareDishOnFB.setBackgroundResource(drawable.rounded_button_yellow);
-            shareDishOnFB.setTextSize(12);
-            shareDishOnFB.setTextColor(Color.parseColor("#00B4DF"));// color.Blue
+//            shareDishOnFB.setText("Share this dish on Facebook");
+//            shareDishOnFB.setBackgroundResource(drawable.rounded_button_yellow);
+//            shareDishOnFB.setTextSize(12);
+//            shareDishOnFB.setTextColor(Color.parseColor("#00B4DF"));// color.Blue
+            shareDishOnFB.setBackgroundResource(R.drawable.facebook);
+            shareDishOnFB.setWidth(122);
+            shareDishOnFB.setHeight(42);
             
             dishName.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
             dishPrice.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
-            
+            //shareDishOnFB.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f) );
             LinearLayout.LayoutParams share_params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
             share_params.setMargins(0, 10, 10, 10);
             shareDishOnFB.setLayoutParams(share_params);
@@ -141,10 +142,35 @@ public class MyOrderHistoryAdapter extends ArrayAdapter<OrderHistoryItem>{
 				
 				@Override
 				public void onClick(View v) {
-					Intent intent = new Intent(mContext, ConfirmShareFBActivity.class);
-					intent.putExtra("restName", String.valueOf(item.getRestName()));
-					intent.putExtra("dishName", dname);
-					mContext.startActivity(intent);					
+					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+			 
+						/*// set title
+						alertDialogBuilder.setTitle("Do you want to share this dish on Facebook?");*/
+			 
+						// set dialog message
+						alertDialogBuilder
+							.setMessage("Do you want to share this dish on Facebook?")
+							.setCancelable(false)
+							.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,int id) {
+									// if this button is clicked, close
+									// current activity									
+									getContext().fileList();
+								}
+							  })
+							.setNegativeButton("No", new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,int id) {
+									// if this button is clicked, just close
+									// the dialog box and do nothing
+									dialog.cancel();
+								}
+							});
+			 
+						// create alert dialog
+						AlertDialog alertDialog = alertDialogBuilder.create();
+		 
+						// show it
+						alertDialog.show();				
 				}
 			});
             LL.addView(shareDishOnFB);

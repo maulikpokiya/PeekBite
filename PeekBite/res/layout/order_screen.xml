@@ -52,14 +52,14 @@
             android:layout_marginRight="10dp"
             android:background="#FFFFFF" />
 
-        <ImageView
+        <!-- <ImageView
             android:id="@+id/backBtn"
             android:layout_width="40px"
             android:layout_height="40px"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
             android:background="@drawable/back"
-            android:gravity="bottom|center" />
+            android:gravity="bottom|center" /> -->
     </LinearLayout>
 
      

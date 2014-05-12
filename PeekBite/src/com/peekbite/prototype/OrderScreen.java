@@ -26,7 +26,7 @@ import android.widget.Toast;
 public class OrderScreen extends ListActivity implements OnClickListener {
 	Button payButton;
 	String key = "";
-	ImageView backButton;
+	//ImageView backButton;
 	int numberofItems = 0;
 	LinearLayout type1Layout, type2Layout, type3Layout, type4Layout, type5Layout;
 	TextView itemTotalPriceBeforeTax_orderScreen,taxcostTextView,itemTotalPriceAfterTax_orderScreenTextView,logoutTV;
@@ -51,7 +51,7 @@ public class OrderScreen extends ListActivity implements OnClickListener {
 		itemTotalPriceBeforeTax_orderScreen = (TextView)findViewById(R.id.itemTotalPriceBeforeTax_orderScreen);
 		itemTotalPriceAfterTax_orderScreenTextView = (TextView)findViewById(R.id.itemTotalPriceAfterTax_orderScreen);
 		taxcostTextView = (TextView)findViewById(R.id.taxcost);
-		backButton = (ImageView) findViewById(R.id.backBtn);
+		//backButton = (ImageView) findViewById(R.id.backBtn);
 		payButton = (Button) findViewById(R.id.payBtn);
 		key = getIntent().getStringExtra("KEY");
 		numberofItems = getIntent().getIntExtra("ITEMS", 0);
@@ -104,28 +104,28 @@ public class OrderScreen extends ListActivity implements OnClickListener {
 			}
 			System.out.println("order size: -------"+getOrder.size());
 		 }  */ 
-		backButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				if(key != null) {
-				if (key.equals("Main")) {
-					Intent intent = new Intent(OrderScreen.this, HomeScreenActivity.class);
-					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//		backButton.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				if(key != null) {
+//				if (key.equals("Main")) {
+//					Intent intent = new Intent(OrderScreen.this, HomeScreenActivity.class);
+//					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+////					intent.putExtra("ITEMS", numberofItems);
+//					startActivity(intent);
+//				} else if (key.equals("ItemDetails")) {
+//					Intent intent = new Intent(OrderScreen.this, ItemDetails.class);
+//					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //					intent.putExtra("ITEMS", numberofItems);
-					startActivity(intent);
-				} else if (key.equals("ItemDetails")) {
-					Intent intent = new Intent(OrderScreen.this, ItemDetails.class);
-					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					intent.putExtra("ITEMS", numberofItems);
-					startActivity(intent);
-				}
-				}
-				/*Intent intent = new Intent(OrderScreen.this, HomeScreenActivity.class);
-				OrderScreen.this.setResult(RESULT_CANCELED,intent);
-				OrderScreen.this.finish();*/
-			}
-		});
+//					startActivity(intent);
+//				}
+//				}
+//				/*Intent intent = new Intent(OrderScreen.this, HomeScreenActivity.class);
+//				OrderScreen.this.setResult(RESULT_CANCELED,intent);
+//				OrderScreen.this.finish();*/
+//			}
+//		});
 		
 		payButton.setOnClickListener(new OnClickListener() {
 			
